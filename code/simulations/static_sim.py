@@ -12,6 +12,7 @@ a = 0.0       # No acceleration of cart for now
 # theta_d means first derivative with respect to time
 # theta_dd means second derivative with respect to time
 
+# vertically upwards is 0 degrees, our test simulation is starting from vertically downwards, displaced by a specific angle
 angle = int(input("Initial angle measured from upright: "))
 theta = np.pi - np.radians(angle)
 theta_d = 0.0
@@ -21,7 +22,7 @@ t = 0.0
 times, angles, crossings = [], [], []
 
 while t < 20:
-    theta_dd = (a*np.cos(np.radians(angle)) + g*np.sin(np.radians(angle)))/r
+    theta_dd = (a*np.cos(theta) + g*np.sin(theta))/r
     theta_d += theta_dd * dt
     prev = theta
     theta += theta_d * dt
