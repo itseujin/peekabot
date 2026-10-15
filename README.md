@@ -20,4 +20,21 @@ My simulation in the while loop already finished the calculations for all the po
 ### Cart moving to infinity at constant speed
 What I noticed in the simulation was that the cart kept moving after the pendulum was steady. I'm assuming this is because I never considered where I want the cart to be, just whether theta is 0 or not. Once theta is 0, the cart can continue on to infinity at constant speed and it will still satisfy my equations.
 
-This led me into a topic called ***full-state feedback***, where I feed the cart's position x and speed v to the controller as well. This gave me the idea of manipulating where the cart "parks" by changing the input of x in the controller to x minus position, where position is anywhere on the 1d number line you want the cart to rest at. 
+This led me into a topic called ***full-state feedback***, where I feed the cart's position x and speed v to the controller as well. This gave me the idea of manipulating where the cart "parks" by changing the input of x in the controller to x minus position, where position is anywhere on the 1d number line you want the cart to rest at.
+
+### Tuning the controller & other Experiments
+In /docs I have a picture of my further equations I derived for the fine-tuning of Kd and Kp terms in my controller. I noticed my current simulations of the cart kept moving left and right about the position for a very long time. I learnt about the concept of critical damping from A-Level physics, and was overjoyed when I realised it can be applied here.
+
+Through trial and error, so far I found that the input Kp of 25 in my equations produced a very smooth feel.
+
+Furthermore, given a maximum acceleration limit (from the motors I will use) I needed to find the largest lean the system can still recover from. This problem is also in /docs
+
+The real interesting part was adding a sudden impulse to the theta_d, meaning the angular velocity of the pendulum. This would equate to me physically pushing the pendulum in real life. I wanted a simulation to predict how my system would react.
+
+
+# Learning materials I found useful
+Detailed explanations of PD Controllers, their block diagrams, and the pros and cons of PD Controllers:
+- https://youtu.be/Yc0VDIrsNnA?si=sh2tcsMZHpy7kVMJ
+
+Mechanical Vibrations, Damping equations and graphs:
+- https://youtu.be/CTd1uVq5-l8?si=96R_yTQJHkJNG4Ri
